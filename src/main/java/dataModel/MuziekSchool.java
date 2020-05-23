@@ -65,8 +65,7 @@ public class MuziekSchool {
 
         Map<String, Leerling> leerlingenOpAlfabet = zetMapOpAlfabet(LEERLINGEN);
 
-        for (Map.Entry<String, Leerling> leerlingSet : leerlingenOpAlfabet.entrySet()) {
-            Leerling leerling = leerlingSet.getValue();
+        for (Leerling leerling : leerlingenOpAlfabet.values()) {
             Factuur factuur = new Factuur(leerling, this);
             System.out.println("\n" + leerling + "\n" + factuur.getLESGELD() );
         }
@@ -80,9 +79,7 @@ public class MuziekSchool {
 
         Map<String, Leerling> leerlingenOpAlfabet = zetMapOpAlfabet(LEERLINGEN);
 
-        for (Map.Entry<String, Leerling> leerlingSet : leerlingenOpAlfabet.entrySet()) {
-            Leerling leerling = leerlingSet.getValue();
-
+        for (Leerling leerling : leerlingenOpAlfabet.values()) {
             Factuur factuur = new Factuur(leerling, docent, this, blok, seizoen, factuurNummer);
             facturenList.add(factuur);
             factuurNummer++;
