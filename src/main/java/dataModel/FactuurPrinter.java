@@ -82,7 +82,8 @@ public class FactuurPrinter {
 
     private PdfPCell generateLesTypeCell(Factuur factuur) {
         PdfPCell lesTypeCell = new PdfPCell();
-        String lesType = factuur.getDocent().getInstrument() + ("lessen ") + factuur.getMUZIEK_SCHOOL().getNAME();
+        String lesType = factuur.getDocent().getInstrument() + ("lessen ") + factuur.getMUZIEK_SCHOOL().getNAME() +
+                " " + factuur.getLesBlok();
         lesTypeCell.setPhrase(new Phrase(lesType));
         lesTypeCell.setPadding(5);
         lesTypeCell.setVerticalAlignment(Element.ALIGN_CENTER);

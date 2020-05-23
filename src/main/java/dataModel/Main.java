@@ -58,17 +58,15 @@ public class Main {
         FactuurPrinter factuurPrinter = new FactuurPrinter();
 
         for (Factuur factuur : factuurList) {
-//            factuurPrinter.printFactuur(factuur);
-//            factuurPrinter.printDocFactuur(factuur);
             factuurPrinter.printPdfFactuur(factuur);
         }
 
         printAlleTotalen(factuurList);
 
-//        Leerling leerling = muziekSchool.getLeerlingByName("Testi Testman");
-//        Factuur factuur = new Factuur(leerling, docent, muziekSchool,"2019-2020", "Blok 3",
-//                999);
-//        factuurPrinter.printFactuur(factuur);
+        Leerling leerling = muziekSchool.getLeerlingByName("Testi Testman");
+        Factuur factuur = new Factuur(leerling, docent, muziekSchool,"2019-2020", "Blok 4",
+                999);
+        factuurPrinter.printPdfFactuur(factuur);
 
     }
 

@@ -80,7 +80,7 @@ public class MuziekSchool {
         Map<String, Leerling> leerlingenOpAlfabet = zetMapOpAlfabet(LEERLINGEN);
 
         for (Leerling leerling : leerlingenOpAlfabet.values()) {
-            Factuur factuur = new Factuur(leerling, docent, this, blok, seizoen, factuurNummer);
+            Factuur factuur = new Factuur(leerling, docent, this, seizoen, blok, factuurNummer);
             facturenList.add(factuur);
             factuurNummer++;
         }
