@@ -1,0 +1,24 @@
+Klant:
+
+Demo Demonsson
+Demostraat 1
+1234 AB Utrecht
+
+
+
+Factuurnummer: 2020.101
+Factuurdatum: 2020-05-23
+
+Factuurbedrag:
+
+
+Contrabaslessen Ceres, Blok 2 2019-2020:				€ 162,80
+(aantal lessen: 6)
+
+BTW 21,00%:												€ 34,19
+-----------------------------------------------------------------------------------------
+Totaal:													€ 196,99
+
+U wordt vriendelijk verzocht binnen 3 weken na ontvangst van deze brief
+de betaling over te maken op ABCD111000222333 t.n.v. Maarten Music
+te Oudewater onder vermelding van Factuurnummer: 2020.101
