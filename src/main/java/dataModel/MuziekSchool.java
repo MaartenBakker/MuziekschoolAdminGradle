@@ -34,7 +34,7 @@ public class MuziekSchool {
         return Collections.unmodifiableMap(TARIEVEN);
     }
 
-    public void addLeerling(String name, String adres, boolean isBovenDe21, Lesduur lesDuur, boolean heeftOmDeWeekLes, int aantalLessen) {
+    public void addLeerling(String name, Adres adres, boolean isBovenDe21, Lesduur lesDuur, boolean heeftOmDeWeekLes, int aantalLessen) {
         Leerling leerling = Leerling.create(name, adres, isBovenDe21, lesDuur, heeftOmDeWeekLes, aantalLessen);
         if (leerling != null) {
             LEERLINGEN.put(leerling.getNAME(), leerling);

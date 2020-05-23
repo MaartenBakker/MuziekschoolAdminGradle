@@ -3,33 +3,14 @@ package dataModel;
 public class Docent {
     private final String NAME;
     private String instrument;
-    private String bedrijfsNaam;
-    private String rekeningNummer;
-    private String verstigingsStadBedrijf;
+    private BedrijfsGegevens bedrijfsGegevens;
 
-    public Docent(String NAME, String instrument, String bedrijfsNaam, String rekeningNummer, String verstigingsStadBedrijf) {
+    public Docent(String NAME, String instrument, BedrijfsGegevens bedrijfsGegevens) {
         this.NAME = NAME;
         this.instrument = instrument;
-        this.bedrijfsNaam = bedrijfsNaam;
-        this.rekeningNummer = rekeningNummer;
-        this.verstigingsStadBedrijf = verstigingsStadBedrijf;
+        this.bedrijfsGegevens = bedrijfsGegevens;
     }
 
-    public void setInstrument(String instrument) {
-        this.instrument = instrument;
-    }
-
-    public void setBedrijfsNaam(String bedrijfsNaam) {
-        this.bedrijfsNaam = bedrijfsNaam;
-    }
-
-    public void setRekeningNummer(String rekeningNummer) {
-        this.rekeningNummer = rekeningNummer;
-    }
-
-    public void setVerstigingsStadBedrijf(String verstigingsStadBedrijf) {
-        this.verstigingsStadBedrijf = verstigingsStadBedrijf;
-    }
 
     public String getNAME() {
         return NAME;
@@ -39,17 +20,15 @@ public class Docent {
         return instrument;
     }
 
-    public String getBedrijfsNaam() {
-        return bedrijfsNaam;
+    public BedrijfsGegevens getBedrijfsGegevens() {
+        return bedrijfsGegevens;
     }
 
-    public String getRekeningNummer() {
-        return rekeningNummer;
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
     }
 
-    public String getVerstigingsStadBedrijf() {
-        return verstigingsStadBedrijf;
+    public void setBedrijfsGegevens(BedrijfsGegevens bedrijfsGegevens) {
+        this.bedrijfsGegevens = bedrijfsGegevens;
     }
-
-
 }

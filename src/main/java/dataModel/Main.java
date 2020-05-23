@@ -34,18 +34,23 @@ public class Main {
         muziekSchool.printTarieven();
 
 
-        muziekSchool.addLeerling("Demo Demonsson", "Demostraat 1\n1234 AB Utrecht", true,
+        muziekSchool.addLeerling("Demo Demonsson", new Adres("Utrecht", "1234AB",
+                        "Demostraat", "1"), true,
                 Lesduur.LESDUUR_30, true, 6);
-        muziekSchool.addLeerling("Testi Testman", "Teststraat 1\n2345 BC Woerden", false,
+        muziekSchool.addLeerling("Testi Testman", null, false,
                 Lesduur.LESDUUR_45, true, 12);
-        muziekSchool.addLeerling("Ficto van Fictief", "Fictielaan 6\n1987 DF Lopik", true,
+        muziekSchool.addLeerling("Ficto van Fictief", new Adres("Lopik", "1987GH",
+                        "Fictielaan", "234"), true,
                 Lesduur.LESDUUR_60, false, 13);
 
         muziekSchool.printLijstVanLeerlingen();
 
 
-        Docent docent = new Docent("Maarten Bakker", "Contrabas", "Maarten Music",
-                "ABCD111000222333", "Oudewater");
+        Docent docent = new Docent("Maarten Bakker", "Basgitaar", new BedrijfsGegevens(
+                "Maarten Music",  new Adres("Oudewater",
+                "3456JK", "Marktstraat", "8A"), "06 1234 56 78",
+                "maartenbakker@gmail.com" ,"ABCD111000222333", "NL001234567B01",
+                89674523));
 
         List<Factuur> factuurList = muziekSchool.maakFactuurVanAlleLeerlingen(docent, "2019-2020",
                 "Blok 2", 101);
@@ -53,8 +58,8 @@ public class Main {
         FactuurPrinter factuurPrinter = new FactuurPrinter();
 
         for (Factuur factuur : factuurList) {
-            factuurPrinter.printFactuur(factuur);
-            factuurPrinter.printDocFactuur(factuur);
+//            factuurPrinter.printFactuur(factuur);
+//            factuurPrinter.printDocFactuur(factuur);
             factuurPrinter.printPdfFactuur(factuur);
         }
 

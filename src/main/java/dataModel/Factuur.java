@@ -25,7 +25,7 @@ public class Factuur implements Comparable<Factuur>{
         this.seizoen = seizoen;
         this.lesBlok = lesBlok;
         this.factuurNummer = Year.now().getValue() + "." + String.format("%03d", factuurNummer);
-        this.factuurDatum = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.factuurDatum = LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
         this.LESGELD = lesgeldTotaalAantalLessen(leerling);
         this.BTW_BEDRAGEN = new BtwBedragen(LESGELD);

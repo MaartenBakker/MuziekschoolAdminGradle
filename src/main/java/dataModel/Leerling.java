@@ -3,13 +3,13 @@ package dataModel;
 public class Leerling {
 
     private final String NAME;
-    private String adres;
+    private Adres adres;
     private LesVorm lesVorm;
     private int aantalLessen;
 
     // Factory methods
 
-    static Leerling create(String name, String adres, boolean bovenDe21, Lesduur lesDuur, boolean omDeWeek,
+    static Leerling create(String name, Adres adres, boolean bovenDe21, Lesduur lesDuur, boolean omDeWeek,
                            int aantalLessen){
 
         if (aantalLessen <=0){
@@ -22,7 +22,7 @@ public class Leerling {
 
     // Constructors
 
-    private Leerling(String NAME, String adres, LesVorm lesVorm, int aantalLessen) {
+    private Leerling(String NAME, Adres adres, LesVorm lesVorm, int aantalLessen) {
         this.NAME = NAME;
         this.adres = adres;
         this.lesVorm = lesVorm;
@@ -35,7 +35,7 @@ public class Leerling {
         return NAME;
     }
 
-    public String getAdres() {
+    public Adres getAdres() {
         return adres;
     }
 
@@ -51,7 +51,7 @@ public class Leerling {
         return aantalLessen;
     }
 
-    public void setAdres(String adres) {
+    public void setAdres(Adres adres) {
         this.adres = adres;
     }
 
@@ -68,8 +68,9 @@ public class Leerling {
         sb.append(NAME);
         sb.append(" : ");
         sb.append("\n");
-        sb.append(adres);
-        sb.append(!adres.equals("") ? "\n" : "");
+        if (adres != null) {
+            sb.append(adres);
+        }
         sb.append("Aantal lessen : ");
         sb.append(aantalLessen);
         sb.append(", ");
