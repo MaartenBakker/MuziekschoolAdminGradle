@@ -48,6 +48,21 @@ public class MuziekSchool {
         }
     }
 
+    public void saveLeerlingen(){
+
+
+    }
+
+    public void loadLeerlingen(){
+
+    }
+
+
+
+
+
+
+
     private Map<String, Leerling> zetMapOpAlfabet(Map<String, Leerling> mapDieOpAlfabetGezetMoetWorden) {
         return new TreeMap<>(mapDieOpAlfabetGezetMoetWorden);
     }
