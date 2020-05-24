@@ -1,14 +1,18 @@
 package dataModel;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class LesVorm {
+public class LesVorm implements Serializable {
 
-        private final boolean IS_BOVEN_DE_21;
-        private final Lesduur LESDUUR;
-        private final boolean HEEFT_OM_DE_WEEK_LES;
+    private final boolean IS_BOVEN_DE_21;
+    private final Lesduur LESDUUR;
+    private final boolean HEEFT_OM_DE_WEEK_LES;
 
-        public LesVorm(boolean IS_BOVEN_DE_21, Lesduur LESDUUR, boolean HEEFT_OM_DE_WEEK_LES) {
+    static final long serialVersionUID = 3L;
+
+
+    public LesVorm(boolean IS_BOVEN_DE_21, Lesduur LESDUUR, boolean HEEFT_OM_DE_WEEK_LES) {
             this.IS_BOVEN_DE_21 = IS_BOVEN_DE_21;
             this.LESDUUR = LESDUUR;
             this.HEEFT_OM_DE_WEEK_LES = HEEFT_OM_DE_WEEK_LES;

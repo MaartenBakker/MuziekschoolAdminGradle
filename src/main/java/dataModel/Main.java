@@ -1,5 +1,7 @@
 package dataModel;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,35 +17,61 @@ public class Main {
 
         MuziekSchool muziekSchool = getMuziekSchool("Ceres");
 
-        muziekSchool.addTarief(false, Lesduur.LESDUUR_60, false, 660.13);
-        muziekSchool.addTarief(false, Lesduur.LESDUUR_45, false, 509.88);
-        muziekSchool.addTarief(false, Lesduur.LESDUUR_30, false, 365.94);
+//        muziekSchool.addTarief(false, Lesduur.LESDUUR_60, false, 660.13);
+//        muziekSchool.addTarief(false, Lesduur.LESDUUR_45, false, 509.88);
+//        muziekSchool.addTarief(false, Lesduur.LESDUUR_30, false, 365.94);
+//
+//        muziekSchool.addTarief(false, Lesduur.LESDUUR_60, true, 307.81);
+//        muziekSchool.addTarief(false, Lesduur.LESDUUR_45, true, 238.50);
+//        muziekSchool.addTarief(false, Lesduur.LESDUUR_30, true, 172.32);
+//
+//        muziekSchool.addTarief(true, Lesduur.LESDUUR_60, false, 755.76);
+//        muziekSchool.addTarief(true, Lesduur.LESDUUR_45, false, 583.86);
+//        muziekSchool.addTarief(true, Lesduur.LESDUUR_30, false, 418.83);
+//
+//        muziekSchool.addTarief(true, Lesduur.LESDUUR_60, true, 351.47);
+//        muziekSchool.addTarief(true, Lesduur.LESDUUR_45, true, 273.16);
+//        muziekSchool.addTarief(true, Lesduur.LESDUUR_30, true, 196.99);
 
-        muziekSchool.addTarief(false, Lesduur.LESDUUR_60, true, 307.81);
-        muziekSchool.addTarief(false, Lesduur.LESDUUR_45, true, 238.50);
-        muziekSchool.addTarief(false, Lesduur.LESDUUR_30, true, 172.32);
-
-        muziekSchool.addTarief(true, Lesduur.LESDUUR_60, false, 755.76);
-        muziekSchool.addTarief(true, Lesduur.LESDUUR_45, false, 583.86);
-        muziekSchool.addTarief(true, Lesduur.LESDUUR_30, false, 418.83);
-
-        muziekSchool.addTarief(true, Lesduur.LESDUUR_60, true, 351.47);
-        muziekSchool.addTarief(true, Lesduur.LESDUUR_45, true, 273.16);
-        muziekSchool.addTarief(true, Lesduur.LESDUUR_30, true, 196.99);
+        try {
+            muziekSchool.loadTarieven();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         muziekSchool.printTarieven();
 
+//        try {
+//            muziekSchool.saveTarieven();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-        muziekSchool.addLeerling("Demo Demonsson", new Adres("Utrecht", "1234AB",
-                        "Demostraat", "1"), true,
-                Lesduur.LESDUUR_30, true, 6);
-        muziekSchool.addLeerling("Testi Testman", null, false,
-                Lesduur.LESDUUR_45, true, 12);
-        muziekSchool.addLeerling("Ficto van Fictief", new Adres("Lopik", "1987GH",
-                        "Fictielaan", "234"), true,
-                Lesduur.LESDUUR_60, false, 13);
+//
+//        muziekSchool.addLeerling("Demo Demonsson", new Adres("Utrecht", "1234AB",
+//                        "Demostraat", "1"), true,
+//                Lesduur.LESDUUR_30, true, 6);
+//        muziekSchool.addLeerling("Testi Testman", null, false,
+//                Lesduur.LESDUUR_45, true, 12);
+//        muziekSchool.addLeerling("Ficto van Fictief", new Adres("Lopik", "1987GH",
+//                        "Fictielaan", "234"), true,
+//                Lesduur.LESDUUR_60, false, 13);
+
+        try {
+            muziekSchool.loadLeerlingen();
+        } catch (Exception e) {
+            System.out.println("Unable to load leerlingen" + e.getMessage());
+            e.printStackTrace();
+        }
 
         muziekSchool.printLijstVanLeerlingen();
+
+//        try {
+//            muziekSchool.saveLeerlingen();
+//        } catch (IOException e) {
+//            System.out.println("Unable to save leerlingen" + e.getMessage());
+//            e.printStackTrace();
+//        }
 
 
         Docent docent = new Docent("Maarten Bakker", "Basgitaar", new BedrijfsGegevens(

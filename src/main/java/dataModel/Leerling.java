@@ -1,11 +1,15 @@
 package dataModel;
 
-public class Leerling {
+import java.io.Serializable;
+
+public class Leerling implements Serializable {
 
     private final String NAME;
     private Adres adres;
     private LesVorm lesVorm;
     private int aantalLessen;
+
+    static final long serialVersionUID = 1L;
 
     // Factory methods
 

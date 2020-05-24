@@ -1,10 +1,15 @@
 package dataModel;
 
-public class Adres {
+import java.io.Serializable;
+
+public class Adres implements Serializable {
     private String plaatsNaam;
     private String postcode;
     private String straatNaam;
     private String huisNummer;
+
+    static final long serialVersionUID = 2L;
+
 
 
     public Adres(String plaatsNaam, String postcode, String straatNaam, String huisNummer) {

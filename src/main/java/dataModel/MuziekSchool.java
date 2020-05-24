@@ -1,12 +1,14 @@
 package dataModel;
 
+
+import java.io.*;
 import java.util.*;
 
 public class MuziekSchool {
 
     private final String NAME;
     private final Map<String, Leerling> LEERLINGEN = new HashMap<>();
-    private final Map<LesVorm, Double> TARIEVEN = new LinkedHashMap<>();
+    private Map<LesVorm, Double> TARIEVEN = new LinkedHashMap<>();
 
 
     public MuziekSchool(String name) {
@@ -48,13 +50,56 @@ public class MuziekSchool {
         }
     }
 
-    public void saveLeerlingen(){
+    public void saveLeerlingen() throws IOException {
+        File file = new File("src/main/resources/" + this.NAME + "/leerlingen.dat");
+        file.getParentFile().mkdirs();
 
-
+        try (ObjectOutputStream leerlingenFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(
+                file)))) {
+            for (Leerling leerling : LEERLINGEN.values()){
+                leerlingenFile.writeObject(leerling);
+            }
+        }
     }
 
-    public void loadLeerlingen(){
+    public void loadLeerlingen() throws ClassNotFoundException, IOException {
+        try (ObjectInputStream leerlingenFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream(
+                "src/main/resources/" + this.NAME + "/leerlingen.dat")))){
+            boolean eof = false;
+            while (!eof) {
+                try {
+                    Leerling leerling = (Leerling) leerlingenFile.readObject();
+                    LEERLINGEN.put(leerling.getNAME(), leerling);
+                } catch (EOFException e) {
+                    eof = true;
+                }
+            }
+        }
+    }
 
+    public void saveTarieven() throws IOException {
+        File file = new File("src/main/resources/" + this.NAME + "/tarieven.dat");
+        file.getParentFile().mkdirs();
+
+        try (ObjectOutputStream tarievenFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(
+                file)))) {
+                tarievenFile.writeObject(TARIEVEN);
+        }
+    }
+
+    public void loadTarieven() throws ClassNotFoundException, IOException {
+        try (ObjectInputStream tarievenFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream(
+                "src/main/resources/" + this.NAME + "/tarieven.dat")))){
+            boolean eof = false;
+            while (!eof) {
+                try {
+                    Map<LesVorm, Double> tarieven = (Map<LesVorm, Double>) tarievenFile.readObject();
+                    this.TARIEVEN = tarieven;
+                } catch (EOFException e) {
+                    eof = true;
+                }
+            }
+        }
     }
 
 
