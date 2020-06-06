@@ -54,14 +54,25 @@ public class Main {
 //        }
 
 
-//        muziekSchool.addLeerling("Demo Demonsson", new Adres("Utrecht", "1234AB",
+
+//        Leerling leerling = Leerling.create("Demo Demonsson", new Adres("Utrecht", "1234AB",
 //                        "Demostraat", "1"), "demo@maartenmusic.com", true,
 //                Lesduur.LESDUUR_30, true, 6);
-//        muziekSchool.addLeerling("Testi Testman", null, "testi@maartenmusic.com",false,
+//
+//        muziekSchool.addLeerling(leerling);
+//
+//        leerling = Leerling.create("Testi Testman", null, "testi@maartenmusic.com",false,
 //                Lesduur.LESDUUR_45, true, 12);
-//        muziekSchool.addLeerling("Ficto van Fictief", new Adres("Lopik", "1987GH",
+//
+//        muziekSchool.addLeerling(leerling);
+//
+//        leerling = Leerling.create("Ficto van Fictief", new Adres("Lopik", "1987GH",
 //                        "Fictielaan", "234"), "ficto@maartenmusic.com", true,
 //                Lesduur.LESDUUR_60, false, 13);
+//
+//        muziekSchool.addLeerling(leerling);
+
+
 
         try {
             muziekSchool.loadLeerlingen();
@@ -86,10 +97,13 @@ public class Main {
                 "maartenbakker@gmail.com" ,"ABCD111000222333", "NL001234567B01",
                 89674523));
 
-        List<Factuur> factuurList = muziekSchool.maakFactuurVanAlleLeerlingen(docent, "2019-2020",
-                "Blok 2", 101);
 
-        FactuurPrinter factuurPrinter = new FactuurPrinter();
+        muziekSchool.addDocent(docent);
+
+        List<Factuur> factuurList = muziekSchool.maakFactuurVanAlleLeerlingen(muziekSchool.getDocentByName("Maarten Bakker"),
+                "2019-2020", "Blok 2", 101);
+
+        FactuurPrinter factuurPrinter = FactuurPrinter.getInstance();
 
         for (Factuur factuur : factuurList) {
             factuurPrinter.printPdfFactuur(factuur);

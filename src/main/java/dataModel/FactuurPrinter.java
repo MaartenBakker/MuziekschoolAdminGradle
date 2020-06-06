@@ -9,6 +9,17 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 
 public class FactuurPrinter {
+    static FactuurPrinter instance;
+
+    public static FactuurPrinter getInstance(){
+        if (instance == null) {
+            instance = new FactuurPrinter();
+        }
+        return instance;
+    }
+
+    private FactuurPrinter() {
+    }
 
     public void printPdfFactuur(Factuur factuur) {
         File file = new File("src/main/resources/facturen/factuur nr." + factuur.getFactuurNummer() + " " +

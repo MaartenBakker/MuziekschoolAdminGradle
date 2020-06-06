@@ -1,7 +1,5 @@
 plugins {
     id 'java'
-    id 'org.openjfx.javafxplugin' version '0.0.5'
-
 }
 
 group 'org.example'
@@ -13,11 +11,8 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-//    implementation 'org.apache.poi:poi-ooxml:4.1.2'
     implementation 'com.itextpdf:itextpdf:5.5.13.1'
-//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.10.4'
-}
-
-javafx {
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    compile 'com.google.api-client:google-api-client:1.23.0'
+    compile 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+    compile 'com.google.apis:google-api-services-gmail:v1-rev83-1.23.0'
 }

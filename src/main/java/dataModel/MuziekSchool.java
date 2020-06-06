@@ -9,6 +9,7 @@ public class MuziekSchool {
     private final String NAME;
     private Map<String, Leerling> leerlingen = new HashMap<>();
     private Map<LesVorm, Double> Tarieven = new LinkedHashMap<>();
+    private Map<String, Docent> docenten = new HashMap<>();
 
 
     public MuziekSchool(String name) {
@@ -23,6 +24,8 @@ public class MuziekSchool {
     public Leerling getLeerlingByName(String name){
         return leerlingen.get(name);
     }
+
+    public Docent getDocentByName(String name) { return docenten.get(name); }
 
 
 //    private static Map<String, Leerling> loadLeerlingenOrAddNewMap(MuziekSchool muziekSchool) {
@@ -65,10 +68,19 @@ public class MuziekSchool {
         return Collections.unmodifiableMap(Tarieven);
     }
 
-    public void addLeerling(String name, Adres adres, String emailAdres, boolean isBovenDe21, Lesduur lesDuur, boolean heeftOmDeWeekLes, int aantalLessen) {
-        Leerling leerling = Leerling.create(name, adres, emailAdres, isBovenDe21, lesDuur, heeftOmDeWeekLes, aantalLessen);
+    public void addLeerling(Leerling leerling) {
         if (leerling != null) {
             leerlingen.put(leerling.getNAME(), leerling);
+        } else {
+            System.out.println("Cannot add Leerling, Leerling == null");
+        }
+    }
+
+    public void addDocent(Docent docent){
+        if (docent != null) {
+            docenten.put(docent.getNAME(), docent);
+        } else {
+            System.out.println("Cannot add Docent, Docent == null");
         }
     }
 
