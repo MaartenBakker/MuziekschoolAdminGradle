@@ -76,7 +76,7 @@ public class Factuur implements Comparable<Factuur>{
 
     private double lesgeldEnkeleLes(Leerling leerling) {
         LesVorm lesVorm = leerling.getLesVorm();
-        double tarief = MUZIEK_SCHOOL.getTARIEVEN().get(lesVorm);
+        double tarief = MUZIEK_SCHOOL.getTarieven().get(lesVorm);
 
         if (lesVorm.HEEFT_OM_DE_WEEK_LES()){
             return (tarief / 6);

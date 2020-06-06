@@ -6,6 +6,7 @@ public class Leerling implements Serializable {
 
     private final String NAME;
     private Adres adres;
+    private String emailAdres;
     private LesVorm lesVorm;
     private int aantalLessen;
 
@@ -13,7 +14,7 @@ public class Leerling implements Serializable {
 
     // Factory methods
 
-    static Leerling create(String name, Adres adres, boolean bovenDe21, Lesduur lesDuur, boolean omDeWeek,
+    static Leerling create(String name, Adres adres, String emailAdres, boolean bovenDe21, Lesduur lesDuur, boolean omDeWeek,
                            int aantalLessen){
 
         if (aantalLessen <=0){
@@ -21,14 +22,15 @@ public class Leerling implements Serializable {
         }
 
         LesVorm lesVorm = new LesVorm(bovenDe21, lesDuur, omDeWeek);
-        return new Leerling(name, adres, lesVorm, aantalLessen);
+        return new Leerling(name, adres, emailAdres, lesVorm, aantalLessen);
     }
 
     // Constructors
 
-    private Leerling(String NAME, Adres adres, LesVorm lesVorm, int aantalLessen) {
+    private Leerling(String NAME, Adres adres, String emailAdres, LesVorm lesVorm, int aantalLessen) {
         this.NAME = NAME;
         this.adres = adres;
+        this.emailAdres = emailAdres;
         this.lesVorm = lesVorm;
         this.aantalLessen = aantalLessen;
     }
@@ -41,6 +43,10 @@ public class Leerling implements Serializable {
 
     public Adres getAdres() {
         return adres;
+    }
+
+    public String getEmailAdres() {
+        return emailAdres;
     }
 
     public LesVorm getLesVorm() {

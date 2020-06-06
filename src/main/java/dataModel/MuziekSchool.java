@@ -7,12 +7,13 @@ import java.util.*;
 public class MuziekSchool {
 
     private final String NAME;
-    private final Map<String, Leerling> LEERLINGEN = new HashMap<>();
-    private Map<LesVorm, Double> TARIEVEN = new LinkedHashMap<>();
+    private Map<String, Leerling> leerlingen = new HashMap<>();
+    private Map<LesVorm, Double> Tarieven = new LinkedHashMap<>();
 
 
     public MuziekSchool(String name) {
         this.NAME = name;
+//        leerlingen = loadLeerlingenOrAddNewMap(this);
     }
 
     public String getNAME() {
@@ -20,33 +21,61 @@ public class MuziekSchool {
     }
 
     public Leerling getLeerlingByName(String name){
-        return LEERLINGEN.get(name);
+        return leerlingen.get(name);
     }
 
+
+//    private static Map<String, Leerling> loadLeerlingenOrAddNewMap(MuziekSchool muziekSchool) {
+//        Map<String, Leerling> leerlingen;
+//        try {
+//            leerlingen = loadLeerlingen(muziekSchool);
+//        } catch (Exception e){
+//            leerlingen = new HashMap<>();
+//            System.out.println("loading failed");
+//        }
+//        return leerlingen;
+//    }
+//
+//    public static Map<String, Leerling> loadLeerlingen(MuziekSchool muziekSchool) throws ClassNotFoundException, IOException {
+//        try (ObjectInputStream leerlingenFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream(
+//                "src/main/resources/" + muziekSchool.NAME + "/leerlingen.dat")))){
+//            Map<String, Leerling> leerlingen = new HashMap<>();
+//            boolean eof = false;
+//            while (!eof) {
+//                try {
+//                    leerlingen = (Map<String, Leerling>) leerlingenFile.readObject();
+//                    System.out.println("leerlingen geladen");
+//                } catch (EOFException e) {
+//                    eof = true;
+//                }
+//            }
+//            return leerlingen;
+//        }
+//    }
 
     public void addTarief(boolean isBovenDe21, Lesduur lesduur, boolean heeftOmDeWeekLes, double prijs) {
         addTarief(new LesVorm(isBovenDe21, lesduur, heeftOmDeWeekLes), prijs);
     }
 
     void addTarief(LesVorm lesvorm, double prijs){
-        TARIEVEN.put(lesvorm, prijs);
+        Tarieven.put(lesvorm, prijs);
     }
 
-    public Map<LesVorm, Double> getTARIEVEN() {
-        return Collections.unmodifiableMap(TARIEVEN);
+    public Map<LesVorm, Double> getTarieven() {
+        return Collections.unmodifiableMap(Tarieven);
     }
 
-    public void addLeerling(String name, Adres adres, boolean isBovenDe21, Lesduur lesDuur, boolean heeftOmDeWeekLes, int aantalLessen) {
-        Leerling leerling = Leerling.create(name, adres, isBovenDe21, lesDuur, heeftOmDeWeekLes, aantalLessen);
+    public void addLeerling(String name, Adres adres, String emailAdres, boolean isBovenDe21, Lesduur lesDuur, boolean heeftOmDeWeekLes, int aantalLessen) {
+        Leerling leerling = Leerling.create(name, adres, emailAdres, isBovenDe21, lesDuur, heeftOmDeWeekLes, aantalLessen);
         if (leerling != null) {
-            LEERLINGEN.put(leerling.getNAME(), leerling);
+            leerlingen.put(leerling.getNAME(), leerling);
         }
     }
 
     public void removeLeerling(String nameOfLeerlingToRemove) {
-        Leerling leerlingToRemove = LEERLINGEN.get(nameOfLeerlingToRemove);
+        Leerling leerlingToRemove = leerlingen.get(nameOfLeerlingToRemove);
         if (leerlingToRemove != null) {
-            LEERLINGEN.remove(nameOfLeerlingToRemove);
+            leerlingen.remove(nameOfLeerlingToRemove);
         }
     }
 
@@ -56,10 +85,8 @@ public class MuziekSchool {
 
         try (ObjectOutputStream leerlingenFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(
                 file)))) {
-            for (Leerling leerling : LEERLINGEN.values()){
-                leerlingenFile.writeObject(leerling);
+            leerlingenFile.writeObject(leerlingen);
             }
-        }
     }
 
     public void loadLeerlingen() throws ClassNotFoundException, IOException {
@@ -68,8 +95,7 @@ public class MuziekSchool {
             boolean eof = false;
             while (!eof) {
                 try {
-                    Leerling leerling = (Leerling) leerlingenFile.readObject();
-                    LEERLINGEN.put(leerling.getNAME(), leerling);
+                    this.leerlingen = (Map<String, Leerling>) leerlingenFile.readObject();
                 } catch (EOFException e) {
                     eof = true;
                 }
@@ -83,7 +109,7 @@ public class MuziekSchool {
 
         try (ObjectOutputStream tarievenFile = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(
                 file)))) {
-                tarievenFile.writeObject(TARIEVEN);
+                tarievenFile.writeObject(Tarieven);
         }
     }
 
@@ -93,8 +119,7 @@ public class MuziekSchool {
             boolean eof = false;
             while (!eof) {
                 try {
-                    Map<LesVorm, Double> tarieven = (Map<LesVorm, Double>) tarievenFile.readObject();
-                    this.TARIEVEN = tarieven;
+                    this.Tarieven = (Map<LesVorm, Double>) tarievenFile.readObject();
                 } catch (EOFException e) {
                     eof = true;
                 }
@@ -114,7 +139,7 @@ public class MuziekSchool {
 
     public void printTarieven(){
         System.out.println("Tarieven van : " + this.NAME + "\n");
-        for (Map.Entry<LesVorm, Double> tarief : TARIEVEN.entrySet()) {
+        for (Map.Entry<LesVorm, Double> tarief : Tarieven.entrySet()) {
             System.out.println(tarief.getKey() + " : " + tarief.getValue());
         }
         System.out.println();
@@ -123,7 +148,7 @@ public class MuziekSchool {
     public void printLijstVanLeerlingen(){
         System.out.println("Lijst van leerlingen van " + this.NAME + ":");
 
-        Map<String, Leerling> leerlingenOpAlfabet = zetMapOpAlfabet(LEERLINGEN);
+        Map<String, Leerling> leerlingenOpAlfabet = zetMapOpAlfabet(leerlingen);
 
         for (Leerling leerling : leerlingenOpAlfabet.values()) {
             Factuur factuur = new Factuur(leerling, this);
@@ -137,7 +162,7 @@ public class MuziekSchool {
         List<Factuur> facturenList = new ArrayList<>();
         int factuurNummer = factuurNummerEersteFactuur;
 
-        Map<String, Leerling> leerlingenOpAlfabet = zetMapOpAlfabet(LEERLINGEN);
+        Map<String, Leerling> leerlingenOpAlfabet = zetMapOpAlfabet(leerlingen);
 
         for (Leerling leerling : leerlingenOpAlfabet.values()) {
             Factuur factuur = new Factuur(leerling, docent, this, seizoen, blok, factuurNummer);

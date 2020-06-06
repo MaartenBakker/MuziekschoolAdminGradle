@@ -11,11 +11,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        createMuziekSchoolAndAddToList("Ceres");
+        MuziekSchool muziekSchool = new MuziekSchool("Ceres");
+        addMuziekschoolToMap(muziekSchool);
 
-// tarieven om de week ga uit van 6 weken, elke week ga uit van 13 weken
+        muziekSchool = new MuziekSchool("Kec");
+        addMuziekschoolToMap(muziekSchool);
 
-        MuziekSchool muziekSchool = getMuziekSchool("Ceres");
+
+        muziekSchool = getMuziekSchool("Ceres");
+
+
+        // tarieven om de week ga uit van 6 weken, elke week ga uit van 13 weken
 
 //        muziekSchool.addTarief(false, Lesduur.LESDUUR_60, false, 660.13);
 //        muziekSchool.addTarief(false, Lesduur.LESDUUR_45, false, 509.88);
@@ -47,14 +53,14 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
 
-//
+
 //        muziekSchool.addLeerling("Demo Demonsson", new Adres("Utrecht", "1234AB",
-//                        "Demostraat", "1"), true,
+//                        "Demostraat", "1"), "demo@maartenmusic.com", true,
 //                Lesduur.LESDUUR_30, true, 6);
-//        muziekSchool.addLeerling("Testi Testman", null, false,
+//        muziekSchool.addLeerling("Testi Testman", null, "testi@maartenmusic.com",false,
 //                Lesduur.LESDUUR_45, true, 12);
 //        muziekSchool.addLeerling("Ficto van Fictief", new Adres("Lopik", "1987GH",
-//                        "Fictielaan", "234"), true,
+//                        "Fictielaan", "234"), "ficto@maartenmusic.com", true,
 //                Lesduur.LESDUUR_60, false, 13);
 
         try {
@@ -65,7 +71,7 @@ public class Main {
         }
 
         muziekSchool.printLijstVanLeerlingen();
-
+//
 //        try {
 //            muziekSchool.saveLeerlingen();
 //        } catch (IOException e) {
@@ -98,9 +104,10 @@ public class Main {
 
     }
 
-    public static void createMuziekSchoolAndAddToList(String name){
-        MuziekSchool muziekSchool = new MuziekSchool(name);
-        mapOfMuziekScholen.put(name, muziekSchool);
+
+
+    public static void addMuziekschoolToMap(MuziekSchool muziekSchool) {
+        mapOfMuziekScholen.put(muziekSchool.getNAME(), muziekSchool);
     }
 
     public static MuziekSchool getMuziekSchool(String name){
