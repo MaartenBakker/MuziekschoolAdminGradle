@@ -1,7 +1,13 @@
 package dataModel;
 
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.services.gmail.Gmail;
+
+import javax.mail.internet.MimeMessage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,10 +109,26 @@ public class Main {
         List<Factuur> factuurList = muziekSchool.maakFactuurVanAlleLeerlingen(muziekSchool.getDocentByName("Maarten Bakker"),
                 "2019-2020", "Blok 2", 101);
 
-        FactuurPrinter factuurPrinter = FactuurPrinter.getInstance();
+        makePDFs(factuurList);
+
+        FactuurMailer factuurMailer = FactuurMailer.getInstance();
+
 
         for (Factuur factuur : factuurList) {
-            factuurPrinter.printPdfFactuur(factuur);
+            MimeMessage email = null;
+            try {
+                email = factuurMailer.createEmailWithAttachment(factuur);
+            } catch (javax.mail.MessagingException e) {
+                System.out.println("Creating mail of " + factuur.getFactuurNummer() + " failed");
+                e.printStackTrace();
+            }
+
+            try {
+                factuurMailer.sendMessage(GmailQuickstart.getAPI(),"me", email);
+            } catch (IOException | GeneralSecurityException | javax.mail.MessagingException e) {
+                System.out.println("Sending mail failed");
+                e.printStackTrace();
+            }
         }
 
         printAlleTotalen(factuurList);
@@ -114,7 +136,7 @@ public class Main {
         Leerling leerling = muziekSchool.getLeerlingByName("Testi Testman");
         Factuur factuur = new Factuur(leerling, docent, muziekSchool,"2019-2020", "Blok 4",
                 999);
-        factuurPrinter.printPdfFactuur(factuur);
+        FactuurPrinter.getInstance().printPdfFactuur(factuur);
 
     }
 
@@ -170,6 +192,13 @@ public class Main {
             somVanAlleBtwBedragen += btwBedrag;
         }
         return somVanAlleBtwBedragen;
+    }
+
+    private static void makePDFs(List<Factuur> factuurList) {
+        FactuurPrinter factuurPrinter = FactuurPrinter.getInstance();
+        for (Factuur factuur : factuurList) {
+            factuurPrinter.printPdfFactuur(factuur);
+        }
     }
 
 }
