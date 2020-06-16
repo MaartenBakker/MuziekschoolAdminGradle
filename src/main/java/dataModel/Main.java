@@ -26,6 +26,8 @@ public class Main {
 
         muziekSchool = getMuziekSchool("Ceres");
 
+        Leerling leerling;
+
 
         // tarieven om de week ga uit van 6 weken, elke week ga uit van 13 weken
 
@@ -107,33 +109,17 @@ public class Main {
         muziekSchool.addDocent(docent);
 
         List<Factuur> factuurList = muziekSchool.maakFactuurVanAlleLeerlingen(muziekSchool.getDocentByName("Maarten Bakker"),
-                "2019-2020", "Blok 2", 101);
+                "2019-2020", "Blok 3", 101);
+
+
 
         makePDFs(factuurList);
 
-        FactuurMailer factuurMailer = FactuurMailer.getInstance();
-
-
-        for (Factuur factuur : factuurList) {
-            MimeMessage email = null;
-            try {
-                email = factuurMailer.createEmailWithAttachment(factuur);
-            } catch (javax.mail.MessagingException e) {
-                System.out.println("Creating mail of " + factuur.getFactuurNummer() + " failed");
-                e.printStackTrace();
-            }
-
-            try {
-                factuurMailer.sendMessage(GmailQuickstart.getAPI(),"me", email);
-            } catch (IOException | GeneralSecurityException | javax.mail.MessagingException e) {
-                System.out.println("Sending mail failed");
-                e.printStackTrace();
-            }
-        }
+        mailPDFs(factuurList);
 
         printAlleTotalen(factuurList);
 
-        Leerling leerling = muziekSchool.getLeerlingByName("Testi Testman");
+        leerling = muziekSchool.getLeerlingByName("Testi Testman");
         Factuur factuur = new Factuur(leerling, docent, muziekSchool,"2019-2020", "Blok 4",
                 999);
         FactuurPrinter.getInstance().printPdfFactuur(factuur);
@@ -198,6 +184,28 @@ public class Main {
         FactuurPrinter factuurPrinter = FactuurPrinter.getInstance();
         for (Factuur factuur : factuurList) {
             factuurPrinter.printPdfFactuur(factuur);
+        }
+    }
+
+    private static void mailPDFs(List<Factuur> factuurList) {
+        FactuurMailer factuurMailer = FactuurMailer.getInstance();
+
+
+        for (Factuur factuur : factuurList) {
+            MimeMessage email = null;
+            try {
+                email = factuurMailer.createEmailWithAttachment(factuur);
+            } catch (javax.mail.MessagingException e) {
+                System.out.println("Creating mail of " + factuur.getFactuurNummer() + " failed");
+                e.printStackTrace();
+            }
+
+            try {
+                factuurMailer.sendMessage(GmailQuickstart.getAPI(),"me", email);
+            } catch (IOException | GeneralSecurityException | javax.mail.MessagingException e) {
+                System.out.println("Sending mail failed");
+                e.printStackTrace();
+            }
         }
     }
 

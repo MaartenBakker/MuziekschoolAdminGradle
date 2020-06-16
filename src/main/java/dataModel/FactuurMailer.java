@@ -67,7 +67,7 @@ public class FactuurMailer {
         StringBuilder sb = new StringBuilder();
         sb.append("Beste ").append(factuur.getLEERLING().getNAME()).append(",\n\n");
         sb.append("In de bijlage vind je de factuur voor ").append(factuur.getLesBlok())
-                .append(" van de baslessen bij Ceres.\n");
+                .append(" van de baslessen bij " + factuur.getMUZIEK_SCHOOL().getNAME() + "\n");
         sb.append("Wil je zo vriendelijk zijn het lesgeld binnen 3 weken over te maken?\n\n");
         sb.append("Vriendelijke groeten,\n");
         sb.append("-- -- -- -- -- -- -- --\n");
