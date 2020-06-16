@@ -31,7 +31,7 @@ public class FactuurMailer {
     private FactuurMailer() {
     }
 
-    public MimeMessage createEmailWithAttachment(Factuur factuur) throws javax.mail.MessagingException {
+    public MimeMessage createEmailWithAttachment(Factuur factuur, File file) throws javax.mail.MessagingException {
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
 
@@ -50,8 +50,6 @@ public class FactuurMailer {
 
         mimeBodyPart = new MimeBodyPart();
 
-        File file = new File("src/main/resources/facturen/factuur nr." + factuur.getFactuurNummer() +
-                " " + factuur.getLEERLING().getNAME() + ".pdf");
         DataSource source = new FileDataSource(file);
 
         mimeBodyPart.setDataHandler(new DataHandler(source));

@@ -5,6 +5,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.gmail.Gmail;
 
 import javax.mail.internet.MimeMessage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -115,14 +116,14 @@ public class Main {
 
         makePDFs(factuurList);
 
-//        mailPDFs(factuurList);
+        mailPDFs(factuurList);
 
         printAlleTotalen(factuurList);
 
         leerling = muziekSchool.getLeerlingByName("Testi Testman");
         Factuur factuur = new Factuur(leerling, docent, muziekSchool,"2019-2020", "Blok 4",
                 999);
-        FactuurPrinter.getInstance().printPdfFactuur(factuur);
+        FactuurPrinter.getInstance().printPdfFactuur(factuur, getFactuurFile(factuur));
 
     }
 
@@ -183,7 +184,8 @@ public class Main {
     private static void makePDFs(List<Factuur> factuurList) {
         FactuurPrinter factuurPrinter = FactuurPrinter.getInstance();
         for (Factuur factuur : factuurList) {
-            factuurPrinter.printPdfFactuur(factuur);
+            File file = getFactuurFile(factuur);
+            factuurPrinter.printPdfFactuur(factuur, file);
         }
     }
 
@@ -193,8 +195,9 @@ public class Main {
 
         for (Factuur factuur : factuurList) {
             MimeMessage email = null;
+            File file = getFactuurFile(factuur);
             try {
-                email = factuurMailer.createEmailWithAttachment(factuur);
+                email = factuurMailer.createEmailWithAttachment(factuur, file);
             } catch (javax.mail.MessagingException e) {
                 System.out.println("Creating mail of " + factuur.getFactuurNummer() + " failed");
                 e.printStackTrace();
@@ -207,6 +210,11 @@ public class Main {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static File getFactuurFile(Factuur factuur) {
+     return new File("Facturen" + File.separator + "factuur nr." + factuur.getFactuurNummer() + " " +
+                factuur.getLEERLING().getNAME() + ".pdf");
     }
 
 }

@@ -21,9 +21,8 @@ public class FactuurPrinter {
     private FactuurPrinter() {
     }
 
-    public void printPdfFactuur(Factuur factuur) {
-        File file = new File("Facturen" + File.separator + "factuur nr." + factuur.getFactuurNummer() + " " +
-                factuur.getLEERLING().getNAME() + ".pdf");
+    public void printPdfFactuur(Factuur factuur, File file) {
+
         file.getParentFile().mkdirs();
 
         Document document = new Document(); //itext Document
