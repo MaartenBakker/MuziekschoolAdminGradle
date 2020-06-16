@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dataModel.BtwBedragenTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-06-16T21:18:37" hostname="MaartenBakker.fritz.box" time="0.006">
+  <properties/>
+  <testcase name="getBEDRAG_ZONDER_BTW_Test()" classname="dataModel.BtwBedragenTest" time="0.002"/>
+  <testcase name="getBTW_BEDRAG_Test()" classname="dataModel.BtwBedragenTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
