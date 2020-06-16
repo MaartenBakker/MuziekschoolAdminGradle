@@ -22,7 +22,7 @@ public class FactuurPrinter {
     }
 
     public void printPdfFactuur(Factuur factuur) {
-        File file = new File("src/main/resources/facturen/factuur nr." + factuur.getFactuurNummer() + " " +
+        File file = new File("Facturen" + File.separator + "factuur nr." + factuur.getFactuurNummer() + " " +
                 factuur.getLEERLING().getNAME() + ".pdf");
         file.getParentFile().mkdirs();
 
