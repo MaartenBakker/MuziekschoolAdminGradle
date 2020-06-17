@@ -32,21 +32,21 @@ public class Main {
 
         // tarieven om de week ga uit van 6 weken, elke week ga uit van 13 weken
 
-//        muziekSchool.addTarief(false, Lesduur.LESDUUR_60, false, 660.13);
-//        muziekSchool.addTarief(false, Lesduur.LESDUUR_45, false, 509.88);
-//        muziekSchool.addTarief(false, Lesduur.LESDUUR_30, false, 365.94);
-//
-//        muziekSchool.addTarief(false, Lesduur.LESDUUR_60, true, 307.81);
-//        muziekSchool.addTarief(false, Lesduur.LESDUUR_45, true, 238.50);
-//        muziekSchool.addTarief(false, Lesduur.LESDUUR_30, true, 172.32);
-//
-//        muziekSchool.addTarief(true, Lesduur.LESDUUR_60, false, 755.76);
-//        muziekSchool.addTarief(true, Lesduur.LESDUUR_45, false, 583.86);
-//        muziekSchool.addTarief(true, Lesduur.LESDUUR_30, false, 418.83);
-//
-//        muziekSchool.addTarief(true, Lesduur.LESDUUR_60, true, 351.47);
-//        muziekSchool.addTarief(true, Lesduur.LESDUUR_45, true, 273.16);
-//        muziekSchool.addTarief(true, Lesduur.LESDUUR_30, true, 196.99);
+        muziekSchool.addTarief(new LesVorm(false, Lesduur.LESDUUR_60, false), 660.13);
+        muziekSchool.addTarief(new LesVorm(false, Lesduur.LESDUUR_45, false), 509.88);
+        muziekSchool.addTarief(new LesVorm(false, Lesduur.LESDUUR_30, false), 365.94);
+
+        muziekSchool.addTarief(new LesVorm(false, Lesduur.LESDUUR_60, true), 307.81);
+        muziekSchool.addTarief(new LesVorm(false, Lesduur.LESDUUR_45, true), 238.50);
+        muziekSchool.addTarief(new LesVorm(false, Lesduur.LESDUUR_30, true), 172.32);
+
+        muziekSchool.addTarief(new LesVorm(true, Lesduur.LESDUUR_60, false), 755.76);
+        muziekSchool.addTarief(new LesVorm(true, Lesduur.LESDUUR_45, false), 583.86);
+        muziekSchool.addTarief(new LesVorm(true, Lesduur.LESDUUR_30, false), 418.83);
+
+        muziekSchool.addTarief(new LesVorm(true, Lesduur.LESDUUR_60, true), 351.47);
+        muziekSchool.addTarief(new LesVorm(true, Lesduur.LESDUUR_45, true), 273.16);
+        muziekSchool.addTarief(new LesVorm(true, Lesduur.LESDUUR_30, true), 196.99);
 
         try {
             muziekSchool.loadTarieven();

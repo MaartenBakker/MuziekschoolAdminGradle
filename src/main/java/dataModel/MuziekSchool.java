@@ -14,7 +14,6 @@ public class MuziekSchool {
 
     public MuziekSchool(String name) {
         this.NAME = name;
-//        leerlingen = loadLeerlingenOrAddNewMap(this);
     }
 
     public String getNAME() {
@@ -26,39 +25,6 @@ public class MuziekSchool {
     }
 
     public Docent getDocentByName(String name) { return docenten.get(name); }
-
-
-//    private static Map<String, Leerling> loadLeerlingenOrAddNewMap(MuziekSchool muziekSchool) {
-//        Map<String, Leerling> leerlingen;
-//        try {
-//            leerlingen = loadLeerlingen(muziekSchool);
-//        } catch (Exception e){
-//            leerlingen = new HashMap<>();
-//            System.out.println("loading failed");
-//        }
-//        return leerlingen;
-//    }
-//
-//    public static Map<String, Leerling> loadLeerlingen(MuziekSchool muziekSchool) throws ClassNotFoundException, IOException {
-//        try (ObjectInputStream leerlingenFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream(
-//                "src/main/resources/" + muziekSchool.NAME + "/leerlingen.dat")))){
-//            Map<String, Leerling> leerlingen = new HashMap<>();
-//            boolean eof = false;
-//            while (!eof) {
-//                try {
-//                    leerlingen = (Map<String, Leerling>) leerlingenFile.readObject();
-//                    System.out.println("leerlingen geladen");
-//                } catch (EOFException e) {
-//                    eof = true;
-//                }
-//            }
-//            return leerlingen;
-//        }
-//    }
-
-    public void addTarief(boolean isBovenDe21, Lesduur lesduur, boolean heeftOmDeWeekLes, double prijs) {
-        addTarief(new LesVorm(isBovenDe21, lesduur, heeftOmDeWeekLes), prijs);
-    }
 
     void addTarief(LesVorm lesvorm, double prijs){
         Tarieven.put(lesvorm, prijs);
