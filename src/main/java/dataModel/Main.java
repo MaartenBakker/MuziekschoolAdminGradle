@@ -112,7 +112,7 @@ public class Main {
 
         makePDFs(factuurList);
 
-        mailPDFs(factuurList);
+//        mailPDFs(factuurList);
 
         printAlleTotalen(factuurList);
 
